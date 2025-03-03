@@ -11,6 +11,8 @@ vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.opt.cursorline = true
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#bafc03", bold = true })
+vim.api.nvim_set_hl(0, "Visual", { bg = "#44475a", fg = "White" })
+
 -- Leader key
 vim.g.mapleader = " "
 vim.keymap.set("n", ";", ":")
