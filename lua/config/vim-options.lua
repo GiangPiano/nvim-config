@@ -5,8 +5,17 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
--- Line number config
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "html", "typescriptreact" },
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+  end,
+})
+
+-- Line number config
 vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.opt.cursorline = true
@@ -24,7 +33,7 @@ vim.opt.incsearch = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
--- vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "100"
 -- Make all backgrounds transparent
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -53,6 +62,9 @@ vim.keymap.set("x", "<leader>p", '"_dP')
 
 -- add empty line
 vim.keymap.set("n", "<Enter>", ":call append(line('.'), '')<CR>j")
+
+vim.keymap.set("n", "<leader>qe", ":lua vim.diagnostic.setqflist()<CR>")
+-- vim.keymap.set("n", "<leader>qf", ":cclose<CR>")
 
 -- Diagnosis
 -- vim.diagnostic.config({

@@ -7,7 +7,9 @@ local fmt = require("luasnip.extras.fmt").fmt
 ls.add_snippets("cpp", {
     -- Competitive Programming Template
     s("cp", fmt([[
-        #include <bits/stdc++.h>
+        #include <iostream>
+        /*#define int long long*/
+
         using namespace std;
 
         void solve() {{
@@ -22,6 +24,7 @@ ls.add_snippets("cpp", {
             // cin >> t;
             while (t--) {{
                 solve();
+                cout << '\n';
             }}
 
             return 0;

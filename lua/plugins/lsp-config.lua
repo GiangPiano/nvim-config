@@ -10,7 +10,7 @@ return {
         -- Mason setup
         require("mason").setup()
         require("mason-lspconfig").setup {
-            ensure_installed = { "lua_ls", "clangd", "jdtls", "pylsp" },
+            ensure_installed = { "lua_ls", "clangd", "pylsp", "ts_ls", "cssls", "html" },
         }
 
         local lspconfig = require("lspconfig")
@@ -21,7 +21,7 @@ return {
         lspconfig.clangd.setup({
             capabilities = capabilities,
             cmd = {
-                "clangd",
+                "clangd"
             },
         })
 
@@ -38,8 +38,14 @@ return {
                 }
             }
         }
+
         -- Java
-        lspconfig.jdtls.setup({
+        -- lspconfig.jdtls.setup({
+        --     capabilities = capabilities,
+        -- })
+
+        -- Typescript & Javascript
+        lspconfig.ts_ls.setup({
             capabilities = capabilities,
         })
 
@@ -53,6 +59,16 @@ return {
                     },
                 },
             },
+        })
+
+        -- CSS 
+        lspconfig.cssls.setup({
+            capabilities = capabilities,
+        })
+
+        -- HTML 
+        lspconfig.html.setup({
+            capabilities = capabilities,
         })
 
         -- LSP keymap settings
