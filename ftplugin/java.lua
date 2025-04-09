@@ -6,8 +6,15 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local system_os = "mac" -- macOS by default
 
--- Java installation path (make sure this points to JDK 23)
-local java_cmd = "/opt/homebrew/opt/openjdk@23/bin/java"
+-- Java installation path
+-- local java_cmd = "/opt/homebrew/opt/openjdk@23/bin/java"
+-- local java_cmd = "/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/bin/java"
+local java_cmd = "/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home/bin/java"
+-- local java_cmd = "/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/bin/java"
+
+-- JavaFX
+local jfx_jar = "/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home/lib/javafx-swt.jar"
+
 
 -- JDTLS installation path (for Mason)
 local jdtls_path = home .. "/.local/share/nvim/mason/packages/jdtls"
@@ -32,14 +39,18 @@ local config = {
         "--add-modules=ALL-SYSTEM",
         "--add-opens", "java.base/java.util=ALL-UNNAMED",
         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-
+        "-cp",
+        table.concat({
+            "/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/jre/lib/ext/jfxrt.jar",
+            "src"
+        }, ":"),
         "-jar", launcher_jar,  -- Use glob to dynamically find the launcher
         "-configuration", config_path,
         "-data", workspace_path, -- Set workspace
     },
 
-    root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "pom.xml", "build.gradle" }),
-    -- root_dir = vim.fn.getcwd(),
+    -- root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "pom.xml", "build.gradle" }),
+    root_dir = vim.fn.getcwd(),
 
     settings = {
         java = {

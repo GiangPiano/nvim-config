@@ -10,7 +10,7 @@ return {
         -- Mason setup
         require("mason").setup()
         require("mason-lspconfig").setup {
-            ensure_installed = { "lua_ls", "clangd", "pylsp", "ts_ls", "cssls", "html" },
+            ensure_installed = { "lua_ls", "clangd", "pylsp", "ts_ls", "cssls", "html", "lemminx" },
         }
 
         local lspconfig = require("lspconfig")
@@ -39,10 +39,10 @@ return {
             }
         }
 
-        -- Java
-        -- lspconfig.jdtls.setup({
-        --     capabilities = capabilities,
-        -- })
+        -- XML
+        lspconfig.lemminx.setup({
+            capabilities = capabilities,
+        })
 
         -- Typescript & Javascript
         lspconfig.ts_ls.setup({
