@@ -20,6 +20,8 @@ vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.opt.cursorline = true
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#bafc03", bold = true })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = "#101015" })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "Black" })
 vim.api.nvim_set_hl(0, "Visual", { bg = "#44475a", fg = "White" })
 
 -- Leader key
@@ -31,9 +33,9 @@ vim.opt.incsearch = true
 
 -- Leave lines when scrolling
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
-vim.opt.colorcolumn = "100"
+-- vim.opt.signcolumn = "yes"
+-- vim.opt.colorcolumn = "100"
 -- Make all backgrounds transparent
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -42,7 +44,7 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = "none" })
-vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
 vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "VertSplit", { bg = "none" })

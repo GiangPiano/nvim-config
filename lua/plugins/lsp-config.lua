@@ -42,6 +42,7 @@ return {
         -- XML
         lspconfig.lemminx.setup({
             capabilities = capabilities,
+            filetype = { "xml", "fxml" },
         })
 
         -- Typescript & Javascript
