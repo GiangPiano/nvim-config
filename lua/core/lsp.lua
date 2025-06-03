@@ -2,8 +2,12 @@ vim.lsp.enable({
     "lua_ls",
     "pylsp",
     "clangd",
-    "jdtls"
+    "ts_ls",
+    "cssls",
+    "html",
+    "lemminx"
 })
+        --     ensure_installed = { "lua_ls", "clangd", "pylsp", "ts_ls", "cssls", "html", "lemminx" },
 
 vim.diagnostic.config({
     -- virtual_lines = true,
