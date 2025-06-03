@@ -108,7 +108,7 @@ local config = {
         },
     },
 
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
     flags = {
         allow_incremental_sync = true,
     },

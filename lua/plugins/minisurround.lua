@@ -3,11 +3,6 @@ return {
     version = '*',
     config = function ()
         require('mini.surround').setup({
-
-            -- Add custom surroundings to be used on top of builtin ones. For more
-            -- information with examples, see `:h MiniSurround.config`.
-            -- custom_surroundings = nil,
-
             -- Duration (in ms) of highlight when calling `MiniSurround.highlight()`
             highlight_duration = 500,
 

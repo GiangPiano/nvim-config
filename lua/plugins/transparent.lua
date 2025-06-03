@@ -3,10 +3,10 @@ return {
     config = function()
         -- Optional, you don't have to run setup.
         require("transparent").setup({
-            -- table: default groups
             groups = {
                 'Normal',
                 'NormalNC',
+                'NormalFloat',
                 'Comment',
                 'Constant',
                 'Special',
@@ -24,28 +24,21 @@ return {
                 'Structure',
                 'LineNr',
                 'NonText',
-                -- 'SignColumn',
-                -- 'CursorLine',
+                'SignColumn',
                 'CursorLineNr',
                 'StatusLine',
                 'StatusLineNC',
                 'EndOfBuffer',
             },
-            -- table: additional groups that should be cleared
+            -- additional groups that should be cleared
             extra_groups = {
                 "Normal",
                 "NormalNC",
                 "TelescopeBorder",
                 "NvimTreeNormal",
-                -- "LualineNormal",
             },
             -- table: groups you don't want to clear
             exclude_groups = {},
-            -- function: code to be executed after highlight groups are cleared
-            -- Also the user event "TransparentClear" will be triggered
-            on_clear = function() end,
         })
-        require("transparent").clear_prefix("NeoTree")
-        -- require("transparent").clear_prefix("lualine")
     end,
 }
