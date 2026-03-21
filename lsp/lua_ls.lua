@@ -16,11 +16,12 @@ return {
 		"stylua.toml",
 	},
 	settings = {
-	    Lua = {
-	        diagnostics = {
-                globals = { "vim", "Snacks" }
-	        },
-	    },
+		Lua = {
+			hint = { enable = true },
+			diagnostics = {
+				globals = { "vim", "Snacks" },
+			},
+		},
 	},
 
 	single_file_support = true,

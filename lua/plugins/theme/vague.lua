@@ -1,9 +1,11 @@
 return {
-    "vague2k/vague.nvim",
+    "GiangPiano/vague.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-        require("vague").setup({
+        -- Load and patch lualine theme from vague
+        local vague = require("vague")
+        vague.setup({
             transparent = true,
         })
     end,

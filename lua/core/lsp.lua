@@ -1,38 +1,50 @@
 vim.lsp.enable({
-    "lua_ls",
-    "pylsp",
-    "clangd",
-    "ts_ls",
-    "cssls",
-    "html",
-    "lemminx"
+	"lua_ls",
+	"pylsp",
+	"clangd",
+	"vtsls",
+	"cssls",
+	"html",
+	"phpactor",
+	"postgres_lsp",
 })
-        --     ensure_installed = { "lua_ls", "clangd", "pylsp", "ts_ls", "cssls", "html", "lemminx" },
 
 vim.diagnostic.config({
-    -- virtual_lines = true,
-    virtual_text = true,
-    underline = true,
-    update_in_insert = false,
-    severity_sort = true,
-    float = {
-        border = "rounded",
-        source = true,
-    },
-    signs = {
-        text = {
-            [vim.diagnostic.severity.ERROR] = "󰅚 ",
-            [vim.diagnostic.severity.WARN] = "󰀪 ",
-            [vim.diagnostic.severity.INFO] = "󰋽 ",
-            [vim.diagnostic.severity.HINT] = "󰌶 ",
-        },
-        numhl = {
-            [vim.diagnostic.severity.ERROR] = "ErrorMsg",
-            [vim.diagnostic.severity.WARN] = "WarningMsg",
-        },
-    },
+	virtual_text = {
+		severity = { vim.diagnostic.severity.ERROR },
+		current_line = true,
+	},
+	-- virtual_text = false,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+	float = {
+		border = "rounded",
+		source = true,
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "󰅚",
+			[vim.diagnostic.severity.WARN] = "󰀪",
+			[vim.diagnostic.severity.INFO] = "󰋽",
+			[vim.diagnostic.severity.HINT] = "󰌶",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+			[vim.diagnostic.severity.WARN] = "None",
+			[vim.diagnostic.severity.INFO] = "None",
+			[vim.diagnostic.severity.HINT] = "None",
+		},
+	},
 })
 
-vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
-vim.keymap.set('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>')
-vim.keymap.set('n', 'grr', ':lua Snacks.picker.lsp_references()<CR>')
+vim.cmd("highlight DiagnosticUnderlineError gui=underline cterm=underline")
+vim.cmd("highlight DiagnosticUnderlineWarn gui=underline cterm=underline")
+vim.cmd("highlight DiagnosticUnderlineHint gui=underline cterm=underline")
+vim.cmd("highlight DiagnosticUnderlineInfo gui=underline cterm=underline")
+
+vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
+vim.keymap.set("n", "<leader>l", ":lua vim.diagnostic.open_float({ focusable = true })<CR>")
+vim.keymap.set("n", "gn", ":lua vim.diagnostic.goto_next()<CR>")
+vim.keymap.set("n", "gp", ":lua vim.diagnostic.goto_prev()<CR>")
+vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")

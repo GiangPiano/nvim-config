@@ -15,4 +15,16 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("x", "p", '"_dP')
 
 -- add empty line
-vim.keymap.set("n", "<Enter>", ":call append(line('.'), '')<CR>j")
+vim.keymap.set("n", "<Enter>", ":call append(line('.'), '')<CR>j", { silent = true })
+vim.keymap.set(
+	"n",
+	"<leader>h",
+	":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
+	{ silent = true }
+)
+
+vim.keymap.set("n", "<leader>cf", function()
+	require("conform").format()
+end, { desc = "Code formatted" })
+
+vim.keymap.set("n", "<leader>g", ":Gitsigns toggle_signs<CR>", { silent = true })
