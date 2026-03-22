@@ -1,6 +1,7 @@
 return {
 	"saghen/blink.cmp",
 	dependencies = { "rafamadriz/friendly-snippets" },
+  event = "BufRead",
 	version = "1.*",
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
