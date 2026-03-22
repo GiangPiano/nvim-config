@@ -4,12 +4,12 @@ local colors = {
 	white = "#ffffff",
 	fg = "#eeeeee",
 	light_gray = "#a6a4a4",
-	gray = "#807d7d",
+	gray = "#908d8d",
 	dark_gray = "#444455",
 	dark_blue = "#111144",
-	green = "#23b521",
+	green = "#33c531",
 	yellow = "#dddd44",
-	light_yellow = "#ffbbbb",
+	light_yellow = "#ffdddd",
 	red = "#ff0000",
 }
 
@@ -43,7 +43,7 @@ local function setup()
 	hi("String", { fg = colors.green, style = "italic" })
 	hi("Variable", { fg = colors.fg })
 	hi("Function", { fg = colors.light_yellow })
-	hi("Keyword", { fg = colors.yellow })
+	hi("Keyword", { fg = colors.yellow, style = "bold" })
 	hi("Type", { fg = colors.gray })
 	hi("@type.builtin", { fg = colors.gray })
 	hi("Identifier", { fg = colors.fg })

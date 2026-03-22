@@ -15,7 +15,6 @@ return {
 			documentation = { auto_show = true, auto_show_delay_ms = 1000, window = { border = "rounded" } },
 			menu = { auto_show = true, auto_show_delay_ms = 500, border = "rounded" },
 			ghost_text = { enabled = true },
-			window = { border = "rounded" },
 		},
 		signature = { enabled = true, window = { border = "rounded" } },
 	},
