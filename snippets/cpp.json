@@ -1,0 +1,28 @@
+{
+  "Competitive Programming Template": {
+    "prefix": "cpbase",
+    "body": [
+      "#include <iostream>",
+      "#include <cstdint>",
+      "",
+      "void solve() {",
+      "    $0",
+      "}",
+      "",
+      "int32_t main() {",
+      "    std::ios_base::sync_with_stdio(false);",
+      "    std::cin.tie(NULL);",
+      "",
+      "    int T = 1;",
+      "    std::cin >> T;",
+      "    while (T--) {",
+      "        solve();",
+      "        std::cout << '\\n';",
+      "    }",
+      "",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Standard competitive programming template with fast I/O and test case loop."
+  }
+}

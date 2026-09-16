@@ -15,7 +15,6 @@ local java_cmd = "/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home/bi
 -- JavaFX
 local jfx_jar = "/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home/lib/javafx-swt.jar"
 
-
 -- JDTLS installation path (for Mason)
 local jdtls_path = home .. "/.local/share/nvim/mason/packages/jdtls"
 local launcher_jar = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
@@ -24,102 +23,107 @@ local config_path = jdtls_path .. "/config_" .. system_os
 -- Define workspace location for JDTLS
 local workspace_path = home .. "/.cache/jdtls/workspace/" .. project_name
 local function uri_encode(path)
-  return path:gsub(" ", "%%20")
+	return path:gsub(" ", "%%20")
 end
 
 local config = {
-    cmd = {
-        java_cmd,
-        "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-        "-Dosgi.bundles.defaultStartLevel=4",
-        "-Declipse.product=org.eclipse.jdt.ls.core.product",
-        "-Dlog.protocol=true",
-        "-Dlog.level=ALL",
-        "-Xmx4g",
-        "--add-modules=ALL-SYSTEM",
-        "--add-opens", "java.base/java.util=ALL-UNNAMED",
-        "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-        "-cp",
-        table.concat({
-            "/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/jre/lib/ext/jfxrt.jar",
-            "src"
-        }, ":"),
-        "-jar", launcher_jar,  -- Use glob to dynamically find the launcher
-        "-configuration", config_path,
-        "-data", workspace_path, -- Set workspace
-    },
+	cmd = {
+		java_cmd,
+		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
+		"-Dosgi.bundles.defaultStartLevel=4",
+		"-Declipse.product=org.eclipse.jdt.ls.core.product",
+		"-Dlog.protocol=true",
+		"-Dlog.level=ALL",
+		"-Xmx4g",
+		"--add-modules=ALL-SYSTEM",
+		"--add-opens",
+		"java.base/java.util=ALL-UNNAMED",
+		"--add-opens",
+		"java.base/java.lang=ALL-UNNAMED",
+		"-cp",
+		table.concat({
+			"/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/jre/lib/ext/jfxrt.jar",
+			"src",
+		}, ":"),
+		"-jar",
+		launcher_jar, -- Use glob to dynamically find the launcher
+		"-configuration",
+		config_path,
+		"-data",
+		workspace_path, -- Set workspace
+	},
 
-    -- root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "pom.xml", "build.gradle" }),
-    root_dir = vim.fn.getcwd(),
+	-- root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "pom.xml", "build.gradle" }),
+	root_dir = vim.fn.getcwd(),
 
-    settings = {
-        java = {
-            eclipse = {
-                downloadSources = true,
-            },
-            configuration = {
-                updateBuildConfiguration = "interactive",
-            },
-            maven = {
-                downloadSources = true,
-            },
-            implementationsCodeLens = {
-                enabled = true,
-            },
-            referencesCodeLens = {
-                enabled = true,
-            },
-            references = {
-                includeDecompiledSources = true,
-            },
-            signatureHelp = { enabled = true },
-            format = {
-                enabled = true,
-            },
-            completion = {
-                favoriteStaticMembers = {
-                    "org.hamcrest.MatcherAssert.assertThat",
-                    "org.hamcrest.Matchers.*",
-                    "org.hamcrest.CoreMatchers.*",
-                    "org.junit.jupiter.api.Assertions.*",
-                    "java.util.Objects.requireNonNull",
-                    "java.util.Objects.requireNonNullElse",
-                    "org.mockito.Mockito.*",
-                },
-                importOrder = {
-                    "java",
-                    "javax",
-                    "com",
-                    "org",
-                },
-            },
-            sources = {
-                organizeImports = {
-                    starThreshold = 9999,
-                    staticStarThreshold = 9999,
-                },
-            },
-            codeGeneration = {
-                toString = {
-                    template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-                },
-                useBlocks = true,
-            },
-        },
-    },
+	settings = {
+		java = {
+			eclipse = {
+				downloadSources = true,
+			},
+			configuration = {
+				updateBuildConfiguration = "interactive",
+			},
+			maven = {
+				downloadSources = true,
+			},
+			implementationsCodeLens = {
+				enabled = true,
+			},
+			referencesCodeLens = {
+				enabled = true,
+			},
+			references = {
+				includeDecompiledSources = true,
+			},
+			signatureHelp = { enabled = true },
+			format = {
+				enabled = true,
+			},
+			completion = {
+				favoriteStaticMembers = {
+					"org.hamcrest.MatcherAssert.assertThat",
+					"org.hamcrest.Matchers.*",
+					"org.hamcrest.CoreMatchers.*",
+					"org.junit.jupiter.api.Assertions.*",
+					"java.util.Objects.requireNonNull",
+					"java.util.Objects.requireNonNullElse",
+					"org.mockito.Mockito.*",
+				},
+				importOrder = {
+					"java",
+					"javax",
+					"com",
+					"org",
+				},
+			},
+			sources = {
+				organizeImports = {
+					starThreshold = 9999,
+					staticStarThreshold = 9999,
+				},
+			},
+			codeGeneration = {
+				toString = {
+					template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+				},
+				useBlocks = true,
+			},
+		},
+	},
 
-    -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
-    flags = {
-        allow_incremental_sync = true,
-    },
-    init_options = {
-        bundles = {},
-    },
+	-- capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	flags = {
+		allow_incremental_sync = true,
+	},
+	init_options = {
+		bundles = {},
+	},
 }
 
 config["on_attach"] = function(client, bufnr)
-    jdtls.setup_dap({ hotcodereplace = "auto" })
-    require("jdtls.dap").setup_dap_main_class_configs()
+	jdtls.setup_dap({ hotcodereplace = "auto" })
+	require("jdtls.dap").setup_dap_main_class_configs()
 end
 
 -- Start JDTLS

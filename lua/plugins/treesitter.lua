@@ -1,33 +1,37 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
 	build = ":TSUpdate",
 	lazy = false,
-	config = function()
-		local configs = require("nvim-treesitter.configs")
+	init = function()
+		local ensure_installed = {
+			"c",
+			"cpp",
+			"lua",
+			"vim",
+			"vimdoc",
+			"query",
+			"typescript",
+			"python",
+			"markdown",
+			"markdown_inline",
+			"cmake",
+		}
+		local alreadyInstalled = require("nvim-treesitter.config").get_installed()
+		local parsersToInstall = vim.iter(ensure_installed)
+			:filter(function(parser)
+				return not vim.tbl_contains(alreadyInstalled, parser)
+			end)
+			:totable()
+		require("nvim-treesitter").install(parsersToInstall)
 
-		configs.setup({
-			ensure_installed = {
-				"typescript",
-				"javascript",
-				"html",
-				"css",
-				"python",
-				"java",
-				"tsx",
-				"c",
-				"lua",
-				"vim",
-				"vimdoc",
-				"query",
-				"markdown",
-				"markdown_inline",
-			},
-			highlight = {
-				enable = true,
-				-- This specifically prevents the "Syntax" fallback you saw earlier
-				additional_vim_regex_highlighting = false,
-			},
-			indent = { enable = true },
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function()
+				-- Enable treesitter highlighting and disable regex syntax
+				pcall(vim.treesitter.start)
+				-- Enable treesitter-based indentation
+				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end,
 		})
 	end,
 }

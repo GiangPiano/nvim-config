@@ -6,10 +6,12 @@ return {
 			lua = { "stylua" },
 			-- Conform will run multiple formatters sequentially
 			-- Conform will formatters_by_ft = {
-			c = { "clang_format", lsp_format = "fallback" },
-			cpp = { "clang_format", lsp_format = "fallback" },
+			c = { "clang-format", lsp_format = "fallback" },
+			cpp = { "clang-format", lsp_format = "fallback" },
 			-- run the first available formatter
 			javascript = { "prettierd", stop_after_first = true },
+			html = { "prettierd", stop_after_first = true },
+			css = { "prettierd", stop_after_first = true },
 			typescript = { "prettierd", stop_after_first = true },
 			typescriptreact = { "prettierd", stop_after_first = true },
 			markdown = { "prettierd", stop_after_first = true },
@@ -23,9 +25,7 @@ return {
 		formatters = {
 			clang_format = {
 				command = "clang-format",
-				prepend_args = {
-					"--style=file",
-				},
+				prepend_args = { "--style=file" },
 			},
 		},
 	},

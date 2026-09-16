@@ -23,8 +23,14 @@ vim.keymap.set(
 	{ silent = true }
 )
 
+-- Conform
 vim.keymap.set("n", "<leader>cf", function()
 	require("conform").format()
 end, { desc = "Code formatted" })
 
+-- Gitsigns
 vim.keymap.set("n", "<leader>g", ":Gitsigns toggle_signs<CR>", { silent = true })
+
+-- Indentation
+vim.keymap.set("v", ">", ">gv", { silent = true })
+vim.keymap.set("v", "<", "<gv", { silent = true })

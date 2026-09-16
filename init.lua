@@ -2,6 +2,7 @@ vim.opt.termguicolors = true
 require("core.lazy")
 require("config.options")
 require("config.keymaps")
+require("config.autocmds")
 require("core.lsp")
 -- require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/snippets" })
 

@@ -43,6 +43,8 @@ return {
 				"BlinkCmpDoc",
 				"BlinkCmpDocBorder",
 				"BlinkCmpKind",
+				"StatusLine",
+				"StatusLineNC",
 			},
 			-- table: groups you don't want to clear
 			exclude_groups = {},

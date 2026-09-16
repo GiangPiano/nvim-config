@@ -1,7 +1,7 @@
 return {
 	"saghen/blink.cmp",
 	dependencies = { "rafamadriz/friendly-snippets" },
-  event = "BufRead",
+	event = "BufRead",
 	version = "1.*",
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
@@ -14,8 +14,8 @@ return {
 		keymap = { preset = "super-tab" },
 		completion = {
 			documentation = { auto_show = true, auto_show_delay_ms = 1000, window = { border = "rounded" } },
-			menu = { auto_show = true, auto_show_delay_ms = 500, border = "rounded" },
-			ghost_text = { enabled = true },
+			menu = { auto_show = true, auto_show_delay_ms = 1000, border = "rounded" },
+			-- ghost_text = { enabled = true },
 		},
 		signature = { enabled = true, window = { border = "rounded" } },
 	},
